@@ -459,13 +459,6 @@ def main():
         if sidebar_tab == "⚙️ Settings":
             st.markdown("### Settings")
 
-            api_key = st.text_input(
-                "OpenAI API Key",
-                type="password",
-                placeholder="sk-...",
-                help="Required for AI performance scoring. Compliance checks run without it.",
-            )
-
             st.markdown("**Target Platform(s)**")
             selected_platforms = []
             cols = st.columns(2)
@@ -478,6 +471,16 @@ def main():
 
             audience_stage = st.selectbox("Audience Stage", AUDIENCE_STAGES)
             market = st.text_input("Target Market", value="Southeast Asia", placeholder="e.g. Southeast Asia")
+
+
+            st.markdown("**🤖 AI Scoring (Optional)**")
+            st.caption("Compliance checks run without a key. Add a key to also get the 0–100 performance score.")
+            api_key = st.text_input(
+                "OpenAI API Key",
+                type="password",
+                placeholder="sk-... (optional)",
+                help="Only needed for AI performance scoring. Leave blank to run compliance checks only.",
+            )
 
             st.divider()
             st.markdown("**Quick Reference**")
@@ -506,10 +509,10 @@ def main():
 
     st.info("""
 **How to use:**
-1. Enter your OpenAI API key in the sidebar (optional — compliance checks run without it).
-2. Select platforms, audience stage, and market.
-3. Upload 1–5 images (JPG, PNG, or WebP).
-4. Click **Score Creatives**.
+1. Select your target platforms, audience stage, and market in the sidebar.
+2. Upload 1–5 images (JPG, PNG, or WebP).
+3. Click **Score Creatives** — compliance checks run instantly, no API key needed.
+4. *(Optional)* Add an OpenAI API key in the sidebar to also get the AI performance score (0–100).
 """)
 
     uploaded_files = st.file_uploader(
