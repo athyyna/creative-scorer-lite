@@ -31,7 +31,7 @@ st.set_page_config(
 
 # ─── Constants ────────────────────────────────────────────────────────────────
 
-PLATFORMS = ["Meta", "TikTok", "Google PMax", "YouTube"]
+PLATFORMS = ["Meta", "TikTok", "Google PMax", "YouTube", "LinkedIn"]
 AUDIENCE_STAGES = ["Awareness", "Consideration", "Conversion", "Retention"]
 MAX_ASSETS = 5
 
@@ -72,6 +72,16 @@ PLATFORM_SPECS = {
         "max_text_pct": 20,
         "formats": ["jpg", "jpeg", "png", "webp"],
         "safe_top_pct": 10, "safe_bottom_pct": 20,
+    },
+    "LinkedIn": {
+        "max_size_mb": 5,
+        "min_w": 1200,
+        "min_h": 627,
+        "preferred_ratios": [(191, 100), (1, 1)],
+        "acceptable_ratios": [(4, 5), (9, 16)],
+        "max_text_pct": 20,
+        "formats": ["jpg", "jpeg", "png", "webp"],
+        "safe_top_pct": 10, "safe_bottom_pct": 10,
     },
 }
 
@@ -345,6 +355,7 @@ def render_legend():
             "TikTok": "JPG, PNG, WebP",
             "Google PMax": "JPG, PNG, GIF, WebP",
             "YouTube": "JPG, PNG, GIF, WebP",
+            "LinkedIn": "JPG, PNG, WebP",
             "PASS when": "Format is in the allowed list",
             "RISK when": "—",
             "FAIL when": "Format not accepted by platform",
@@ -355,6 +366,7 @@ def render_legend():
             "TikTok": "≤ 500 KB (feed)",
             "Google PMax": "≤ 5 MB",
             "YouTube": "≤ 2 MB (thumbnail)",
+            "LinkedIn": "≤ 5 MB",
             "PASS when": "Within platform limit",
             "RISK when": "—",
             "FAIL when": "Exceeds platform file size cap",
@@ -365,6 +377,7 @@ def render_legend():
             "TikTok": "Min 720×1280 px",
             "Google PMax": "Min 600×314 px",
             "YouTube": "Min 1280×720 px",
+            "LinkedIn": "Min 1200×627 px (landscape) / 1080×1080 px (square)",
             "PASS when": "Both dimensions meet minimum",
             "RISK when": "—",
             "FAIL when": "Width or height below minimum",
@@ -375,6 +388,7 @@ def render_legend():
             "TikTok": "9:16 preferred; 1:1 acceptable",
             "Google PMax": "1.91:1 preferred; 1:1, 4:3 acceptable",
             "YouTube": "16:9 preferred; 1:1 acceptable",
+            "LinkedIn": "1.91:1 (preferred); 1:1, 4:5, 9:16 acceptable",
             "PASS when": "Matches a preferred ratio (±5%)",
             "RISK when": "Matches an acceptable but non-preferred ratio",
             "FAIL when": "Does not match any accepted ratio",
@@ -385,6 +399,7 @@ def render_legend():
             "TikTok": "< 25% text coverage",
             "Google PMax": "< 20% text coverage",
             "YouTube": "< 20% text coverage",
+            "LinkedIn": "< 20% text coverage",
             "PASS when": "Estimated coverage clearly below threshold",
             "RISK when": "Coverage near threshold — manual review recommended",
             "FAIL when": "Coverage clearly exceeds threshold",
@@ -395,6 +410,7 @@ def render_legend():
             "TikTok": "Top 15%, bottom 25%, right 15% reserved",
             "Google PMax": "Top/bottom 10% reserved",
             "YouTube": "Top/bottom 10–20% reserved",
+            "LinkedIn": "Top/bottom 10% reserved",
             "PASS when": "—",
             "RISK when": "Always — manual visual verification required",
             "FAIL when": "—",
